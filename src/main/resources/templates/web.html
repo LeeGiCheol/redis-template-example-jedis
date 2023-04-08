@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" id="data">
+    <input type="button" id="btnClick" th:text="버튼 클릭하면 우측에 노출">
+    <input type="text" id="return-data">
+    <script>
+        var btn = document.getElementById("btnClick");
+
+        btn.addEventListener("click", () => {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/', true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+
+            var data = document.getElementById("data").value;
+            xhr.send(JSON.stringify({data}));
+
+            xhr.onload = () => {
+                if (xhr.status == 200) {
+                    console.log(xhr.response.data);
+                    document.getElementById("return-data").value = JSON.parse(xhr.response).data;
+                } else {
+                    //failed
+                }
+            }
+        });
+    </script>
+</body>
+</html>

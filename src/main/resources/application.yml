@@ -1,0 +1,11 @@
+redis:
+  pool:
+    max: 50
+    min-idle: 15
+    max-idle: 25
+  hosts: 34.64.235.23:7000,34.64.188.18:7000,34.64.244.218:7000
+  connection-time-out: 3000
+  port: 7000
+
+server:
+  port: 8888
